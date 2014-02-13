@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Komodo Project File - DO NOT EDIT -->
+<project id="118c7b0f-3797-4685-967d-12077e826cb4" kpf_version="5" name="RLang.komodoproject">
+<preference-set idref="118c7b0f-3797-4685-967d-12077e826cb4" id="project" preftype="project">
+  <boolean id="configured">1</boolean>
+  <string id="koextgen.target">komodolang</string>
+</preference-set>
+</project>
