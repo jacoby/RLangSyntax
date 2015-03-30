@@ -20,7 +20,7 @@ Assuming you've pulled this into ~/dev/RLangSyntax and your Komodo install is in
 ~/opt/Komodo, you can build this yourself with the following command:
 
     cd ~/dev/RLangSyntax
-    ~/lib/sdk/bin/koext build --unjarred
+    ~/opt/Komodo/lib/sdk/bin/koext build --unjarred
 
 TODO: adding more pizzazz to highlighting.
 
