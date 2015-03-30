@@ -1,5 +1,3 @@
-EDIT: This plugin is not compatable with KomodoEdit 9.0.0. 
-
 Default release of KomodoEdit features language syntax highlighting for a
 large number of languages, but not for R. There existed SciViews-K
 (http://www.sciviews.org/SciViews-K/), but it stopped working with
@@ -16,4 +14,13 @@ Plus one step more: I put it on GitHub!
 The UDL I forked from the abandoned SciViews code is MPL 1.1/GPL 2.0/LGPL 2.1,
 so I suppose this has to be the same.
 
-TODO: Build documentation, adding more pizzazz to highlighting.
+BUILD:
+
+Assuming you've pulled this into ~/dev/RLangSyntax and your Komodo install is in
+~/opt/Komodo, you can build this yourself with the following command:
+
+    cd ~/dev/RLangSyntax
+    ~/lib/sdk/bin/koext build --unjarred
+
+TODO: adding more pizzazz to highlighting.
+
