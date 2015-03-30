@@ -3,11 +3,11 @@
      xmlns:em="http://www.mozilla.org/2004/em-rdf#">
     <Description about="urn:mozilla:install-manifest">
         <em:name>RLangSyntax</em:name>
-        <em:version>0.1.1</em:version>
+        <em:version>0.1.2</em:version>
         <em:description>R Syntax for Komodo</em:description>
         <em:creator>Dave Jacoby</em:creator>
         <em:homepageURL>https://github.com/jacoby/RLangSyntax</em:homepageURL>
-        <em:id>jacoby.david@gmail.com</em:id>
+        <em:id>jacoby.david+rlangsyntax@gmail.com</em:id>
         <em:type>2</em:type> <!-- type=extension --> 
         <em:targetApplication>
             <Description>
