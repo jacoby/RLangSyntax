@@ -1,0 +1,246 @@
+# ***** BEGIN LICENSE BLOCK *****
+# Version: MPL 1.1/GPL 2.0/LGPL 2.1
+#
+# The contents of this file are subject to the Mozilla Public License
+# Version 1.1 (the "License"); you may not use this file except in
+# compliance with the License. You may obtain a copy of the License at
+# http://www.mozilla.org/MPL/
+#
+# Software distributed under the License is distributed on an "AS IS"
+# basis, WITHOUT WARRANTY OF ANY KIND, either express or implied. See the
+# License for the specific language governing rights and limitations
+# under the License.
+#
+# The Original Code is SciViews-K by Philippe Grosjean et al.
+#
+# Contributor(s):
+#   Philippe Grosjean
+#   ActiveState Software Inc (code inspired from)
+#
+# Alternatively, the contents of this file may be used under the terms of
+# either the GNU General Public License Version 2 or later (the "GPL"), or
+# the GNU Lesser General Public License Version 2.1 or later (the "LGPL"),
+# in which case the provisions of the GPL or the LGPL are applicable instead
+# of those above. If you wish to allow use of your version of this file only
+# under the terms of either the GPL or the LGPL, and not to allow others to
+# use your version of this file under the terms of the MPL, indicate your
+# decision by deleting the provisions above and replace them with the notice
+# and other provisions required by the GPL or the LGPL. If you do not delete
+# the provisions above, a recipient may use your version of this file under
+# the terms of any one of the MPL, the GPL or the LGPL.
+#
+# ***** END LICENSE BLOCK *****
+
+# Lexer description for R wiki chunks
+
+family markup
+sublanguage Rwiki
+
+# Possible styles
+#SCE_UDL_M_STAGO
+#    Start-tag-open character, as in "<"
+#SCE_UDL_M_TAGNAME
+#    The name immediately after a tag-open character.
+#SCE_UDL_M_TAGSPACE
+#    White-space in start-tags, end-tags, and empty tags.
+#SCE_UDL_M_ATTRNAME
+#    Attribute names in start-tags.
+#SCE_UDL_M_OPERATOR
+#    Operator characters, which is essentially just the '=' in attribute assignments in start-tags.
+#SCE_UDL_M_STAGC
+#    Start-tag-close character (">")
+#SCE_UDL_M_EMP_TAGC
+#    Tag-close sequence for an empty start-tag ("/>")
+#SCE_UDL_M_STRING
+#    String attribute values in start-tags
+#SCE_UDL_M_ETAGO
+#    End-tag-open character ("</")
+#SCE_UDL_M_ETAGC
+#    End-tag-close character (">"). Distinguished from an "STAGC" only by context.
+#SCE_UDL_M_ENTITY
+#    A complete entity reference, from the leading "&" through the closing ";".
+#SCE_UDL_M_PI
+#    Processing instructions, including the leading XML declaration, from the leading "<?" through the closing "?>".
+#SCE_UDL_M_CDATA
+#    CDATA marked sections.
+#SCE_UDL_M_COMMENT
+#    SGML comments.
+
+state IN_M_WIKI_START
+/^/ : => in_wiki_default_start_of_line
+/./: redo, => in_wiki_default_on_line
+
+state in_wiki_default_start_of_line:
+#'{{{' : paint(upto, M_DEFAULT), paint(include, M_TAGNAME), => in_wiki_triple_brace_start
+'##': paint(upto, M_CDATA), paint(include, M_COMMENT), => in_wiki_have_comment
+
+# This is for the item list
+'- ': paint(upto, M_CDATA), paint(include, M_TAGNAME), => in_wiki_default_on_line
+'* ': paint(upto, M_CDATA), paint(include, M_TAGNAME), => in_wiki_default_on_line
+'** ': paint(upto, M_CDATA), paint(include, M_TAGNAME), => in_wiki_default_on_line
+'*** ': paint(upto, M_CDATA), paint(include, M_TAGNAME), => in_wiki_default_on_line
+'**** ': paint(upto, M_CDATA), paint(include, M_TAGNAME), => in_wiki_default_on_line
+'***** ': paint(upto, M_CDATA), paint(include, M_TAGNAME), => in_wiki_default_on_line
+
+# This is for the numbered list
+'. ': paint(upto, M_CDATA), paint(include, M_TAGNAME), => in_wiki_default_on_line
+'.. ': paint(upto, M_CDATA), paint(include, M_TAGNAME), => in_wiki_default_on_line
+'... ': paint(upto, M_CDATA), paint(include, M_TAGNAME), => in_wiki_default_on_line
+'.... ': paint(upto, M_CDATA), paint(include, M_TAGNAME), => in_wiki_default_on_line
+'..... ': paint(upto, M_CDATA), paint(include, M_TAGNAME), => in_wiki_default_on_line
+/[1-9]\. /: paint(upto, M_CDATA), paint(include, M_TAGNAME), => in_wiki_default_on_line
+/[a-z]\. /: paint(upto, M_CDATA), paint(include, M_TAGNAME), => in_wiki_default_on_line
+/[A-Z]\. /: paint(upto, M_CDATA), paint(include, M_TAGNAME), => in_wiki_default_on_line
+/[ivx]+\) /: paint(upto, M_CDATA), paint(include, M_TAGNAME), => in_wiki_default_on_line
+/[IVX]+\) /: paint(upto, M_CDATA), paint(include, M_TAGNAME), => in_wiki_default_on_line
+
+'===== ': paint(upto, M_CDATA), paint(include, M_TAGNAME), => in_wiki_finish_header
+'==== ': paint(upto, M_CDATA), paint(include, M_TAGNAME), => in_wiki_finish_header
+'=== ': paint(upto, M_CDATA), paint(include, M_TAGNAME), => in_wiki_finish_header
+'== ': paint(upto, M_CDATA), paint(include, M_TAGNAME), => in_wiki_finish_header
+'= ': paint(upto, M_CDATA), paint(include, M_TAGNAME), => in_wiki_finish_header
+'.': paint(upto, M_CDATA), paint(include, M_TAGNAME), => in_wiki_finish_header
+
+# This is for special paragraphs
+'NOTE:': paint(upto, M_CDATA), paint(include, M_TAGNAME), => in_wiki_default_on_line
+'IMPORTANT:': paint(upto, M_CDATA), paint(include, M_TAGNAME), => in_wiki_default_on_line
+'WARNING:': paint(upto, M_CDATA), paint(include, M_TAGNAME), => in_wiki_default_on_line
+'CAUTION:': paint(upto, M_CDATA), paint(include, M_TAGNAME), => in_wiki_default_on_line
+'TIP:': paint(upto, M_CDATA), paint(include, M_TAGNAME), => in_wiki_default_on_line
+
+# Everything between [] on the beginning of a line, or with name;; name:: name::: name:::: is tag
+/\[.*\]$/: paint(upto, M_CDATA), paint(include, M_TAGNAME), => in_wiki_default_start_of_line
+/[a-zA-Z][a-zA-Z _0-9]+;;$/: paint(upto, M_CDATA), paint(include, M_TAGNAME), => in_wiki_default_start_of_line
+/[a-zA-Z][a-zA-Z _0-9]+:::?:?$/: paint(upto, M_CDATA), paint(include, M_TAGNAME), => in_wiki_default_start_of_line
+
+/./: redo, => in_wiki_default_on_line
+
+state in_wiki_finish_header:
+/$/ : paint(upto, M_PI), paint(include, M_PI), => in_wiki_default_start_of_line
+#/\s+/ : #stay
+#'##': paint(upto, M_PI), paint(include, M_COMMENT), => in_wiki_have_comment
+#/./: redo, => in_wiki_default_on_line
+
+state in_wiki_default_on_line:
+#'##': paint(upto, M_CDATA), paint(include, M_COMMENT), => in_wiki_have_comment
+# Line break with +
+/ \+$/: paint(upto, M_CDATA), paint(include, M_TAGNAME), => in_wiki_default_start_of_line
+/$/: => in_wiki_default_start_of_line
+# We don't want to transit to italic stage for URLs like http://xxx
+"://": #stay
+"//" : paint(upto, M_CDATA), paint(include, M_TAGNAME), => in_wiki_italic
+"**" : paint(upto, M_CDATA), paint(include, M_TAGNAME), => in_wiki_bold
+## TODO: use a different language here... may be latex or latexequation?
+"+++$$" : paint(upto, M_CDATA), paint(include, M_TAGNAME), => in_wiki_equation
+"$$" : paint(upto, M_CDATA), paint(include, M_TAGNAME), => in_wiki_code
+"+++" : paint(upto, M_CDATA), paint(include, M_TAGNAME), => in_wiki_passthrough
+"~~" : paint(upto, M_CDATA), paint(include, M_TAGNAME), => in_wiki_monospaced
+
+#"'''''" : paint(upto, M_CDATA), paint(include, M_TAGNAME), => in_wiki_q5
+#"'''" : paint(upto, M_CDATA), paint(include, M_TAGNAME), => in_wiki_q3
+#"''" : paint(upto, M_CDATA), paint(include, M_TAGNAME), => in_wiki_q2
+
+"__" : paint(upto, M_CDATA), paint(include, M_TAGNAME), => in_wiki_subscript
+"^^" : paint(upto, M_CDATA), paint(include, M_TAGNAME), => in_wiki_superscript
+
+'{{{' : paint(upto, M_CDATA), => in_wiki_brace_3
+/!'+/: #stay
+/![~^{,]+/: #stay
+/$/: => in_wiki_default_start_of_line
+
+#{{{ braces
+state in_wiki_triple_brace_start:
+/\s*\r?$/: => in_wiki_triple_brace_next_line
+/./: redo, => in_wiki_brace_3
+
+# First line after a lone "{{{" will change state.
+state in_wiki_triple_brace_next_line
+/#!python\b/: paint(include, M_OPERATOR), => IN_M_DEFAULT
+/#!html\b/: paint(include, M_OPERATOR), => IN_M_DEFAULT
+/./ : redo, => in_wiki_brace_3
+
+state in_wiki_brace_3:
+/!./: #stay
+'}}}': paint(include, M_TAGSPACE), => in_wiki_default_on_line
+#}}}
+#{{{ headers
+# bangs don't escape in headings
+#state in_wiki_h1:
+#/ =(?=[\s\r#]|$)/: paint(include, M_STRING), => in_wiki_finish_header
+#/$/ => in_tw_default_start_of_line # XXX Better to have an EOL_HEADER line
+#state in_wiki_h2:
+#/ ==(?=[\s\r#]|$)/: paint(include, M_STRING), => in_wiki_finish_header
+#/$/ => in_wiki_default_start_of_line
+#state in_wiki_h3:
+#/ ===(?=[\s\r#]|$)/: paint(include, M_STRING), => in_wiki_finish_header
+#/$/ => in_wiki_default_start_of_line
+#state in_wiki_h4:
+#/ ====(?=[\s\r#]|$)/: paint(include, M_STRING), => in_wiki_finish_header
+#/$/ => in_wiki_default_start_of_line
+#state in_wiki_h5:
+#/ =====(?=[\s\r#]|$)/: paint(include, M_STRING), => in_wiki_finish_header
+#/$/ => in_wiki_default_start_of_line
+#state in_wiki_blockheader:
+#/$/: paint(include, M_TAGNAME), => in_wiki_default_start_of_line
+
+state in_wiki_have_comment:
+# These things are actually IDs that would be part of the element.
+/$/: paint(upto, M_COMMENT),  => in_wiki_default_start_of_line
+
+#}}}
+
+
+#{{{ in-line things
+state in_wiki_italic:
+# We don't want to transit from italic stage for URLs like http://xxx
+"://": #stay
+/!\/+/: #stay
+## TODO: allow for other in-line things inside this!
+"//" : paint(upto, M_ATTRNAME), paint(include, M_TAGNAME), => in_wiki_default_on_line
+
+state in_wiki_bold:
+/!\**/: #stay
+"**" : paint(upto, M_TAGNAME), paint(include, M_TAGNAME), => in_wiki_default_on_line
+
+state in_wiki_equation:
+/!\$$+++/: #stay
+"$$+++" : paint(upto, M_TAGNAME), paint(include, M_TAGNAME), => in_wiki_default_on_line
+
+state in_wiki_code:
+/!\$$/: #stay
+"$$" : paint(upto, CSL_STRING), paint(include, M_TAGNAME), => in_wiki_default_on_line
+
+state in_wiki_passthrough:
+/!\+++/: #stay
+"+++" : paint(upto, SSL_STRING), paint(include, M_TAGNAME), => in_wiki_default_on_line
+
+state in_wiki_monospaced:
+/!\~~/: #stay
+"~~" : paint(upto, CSL_STRING), paint(include, M_TAGNAME), => in_wiki_default_on_line
+
+#state in_wiki_q5:
+#/!'+/: #stay
+#"'''''" : paint(upto, M_STRING), paint(include, M_TAGNAME), => in_wiki_default_on_line
+#state in_wiki_q3:
+#/!'+/: #stay
+#"'''" : paint(upto, SSL_STRING), paint(include, M_TAGNAME), => in_wiki_default_on_line
+#state in_wiki_q2:
+#/!'+/: #stay
+#"''" : paint(upto, CSL_STRING), paint(include, M_TAGNAME), => in_wiki_default_on_line
+
+state in_wiki_subscript:
+/!__/: #stay
+"__" : paint(upto, M_STRING), paint(include, M_TAGNAME), => in_wiki_default_on_line
+state in_wiki_superscript:
+/!^^/: #stay
+"^^" : paint(upto, M_STRING), paint(include, M_TAGNAME), => in_wiki_default_on_line
+#}}}
+
+################ End of State Handling ################
+
+
+################ Fold Handling ################
+#fold '!"' M_STRING +
+#fold '!"' M_STRING -
+
+################ End of Fold Handling ################
