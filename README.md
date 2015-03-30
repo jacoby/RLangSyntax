@@ -22,5 +22,12 @@ Assuming you've pulled this into ~/dev/RLangSyntax and your Komodo install is in
     cd ~/dev/RLangSyntax
     ~/opt/Komodo/lib/sdk/bin/koext build --unjarred
 
-TODO: adding more pizzazz to highlighting.
+DOWNLOAD:
+
+The point to GitHub is to get the code, but if you just want the xpi, I have it on my Dropbox. [RLangSyntax XPI](https://www.dropbox.com/s/lw53t7dqh9agv92/rlangsyntax-0.1.1-ko.xpi?dl=0).
+
+TODO: 
+creating a project GitHub.io page
+adding more pizzazz to highlighting.
+
 
