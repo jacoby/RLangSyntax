@@ -1,3 +1,5 @@
+EDIT: This plugin is not compatable with KomodoEdit 9.0.0. 
+
 Default release of KomodoEdit features language syntax highlighting for a
 large number of languages, but not for R. There existed SciViews-K
 (http://www.sciviews.org/SciViews-K/), but it stopped working with

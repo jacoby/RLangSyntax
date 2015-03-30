@@ -20,7 +20,7 @@ class KoRLanguage(KoUDLLanguage):
     _reg_contractid_ = "@activestate.com/koLanguage?language=%s;1" % name
     _reg_categories_ = [("komodo-language", name)]
     _reg_clsid_ = "ccf8049b-9c38-46b3-8700-f91f9f433ae4"
-    defaultExtension = '.r,.rs'
+    defaultExtension = '.R,.r,.rs,.Rscript'
 
     # ------------ Commenting Controls ------------ #
 

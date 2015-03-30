@@ -2,12 +2,12 @@
 <RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
      xmlns:em="http://www.mozilla.org/2004/em-rdf#">
     <Description about="urn:mozilla:install-manifest">
-        <em:id>rlang_language@yourdomain.org</em:id>
-        <em:name>rlang_language</em:name>
+        <em:id>jacoby.david@gmail.com</em:id>
+        <em:name>Dave Jacoby</em:name>
         <em:version>0.1</em:version>
-        <em:description></em:description>
-        <em:creator>Me</em:creator>
-        <em:homepageURL>http://yourdomain.org/rlang_language</em:homepageURL>
+        <em:description>R Syntax for Komodo</em:description>
+        <em:creator>Dave Jacoby</em:creator>
+        <em:homepageURL>https://github.com/jacoby/</em:homepageURL>
         <em:type>2</em:type> <!-- type=extension --> 
 
         <em:targetApplication>
