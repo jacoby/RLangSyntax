@@ -4,5 +4,6 @@
 <preference-set idref="118c7b0f-3797-4685-967d-12077e826cb4" id="project" preftype="project">
   <boolean id="configured">1</boolean>
   <string id="koextgen.target">komodolang</string>
+  <long id="prefs_version">1</long>
 </preference-set>
 </project>
