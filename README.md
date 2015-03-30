@@ -24,7 +24,7 @@ Assuming you've pulled this into ~/dev/RLangSyntax and your Komodo install is in
 
 DOWNLOAD:
 
-Newest XP is in https://github.com/jacoby/RLangSyntax/releases
+Newest XPI is in https://github.com/jacoby/RLangSyntax/releases
 
 Thanks to the Komodo developers, who are giving me a practical short course in 
 developing on GitHub today.
