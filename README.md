@@ -1,3 +1,11 @@
+# Komodo supports R syntax natively as of 9.3
+
+## You probably don't want to use this project
+
+## Been nice while it lasted
+
+## So long and thanks for the fish
+
 Default release of KomodoEdit features language syntax highlighting for a
 large number of languages, but not for R. There existed SciViews-K
 (http://www.sciviews.org/SciViews-K/), but it stopped working with
