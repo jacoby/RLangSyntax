@@ -14,7 +14,7 @@ Plus one step more: I put it on GitHub!
 The UDL I forked from the abandoned SciViews code is MPL 1.1/GPL 2.0/LGPL 2.1,
 so I suppose this has to be the same.
 
-BUILD:
+# BUILD:
 
 Assuming you've pulled this into ~/dev/RLangSyntax and your Komodo install is in
 ~/opt/Komodo, you can build this yourself with the following command:
@@ -22,9 +22,15 @@ Assuming you've pulled this into ~/dev/RLangSyntax and your Komodo install is in
     cd ~/dev/RLangSyntax
     ~/opt/Komodo/lib/sdk/bin/koext build --unjarred
 
-DOWNLOAD:
+# DOWNLOAD:
 
 Newest XPI is in https://github.com/jacoby/RLangSyntax/releases
 
-Thanks to the Komodo developers, who are giving me a practical short course in 
+Thanks to the Komodo developers, who are giving me a practical short course in
 developing on GitHub today.
+
+# USAGE:
+
+This tool does not set your editor to associate RLangSyntax with R files,
+so you'll have to go into the File Association to set that. For individual
+files, go to View > View As Language > R.
